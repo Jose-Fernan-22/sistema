@@ -1,0 +1,54 @@
+<!-- Main content-->
+<section class="content">
+    <div class="container-center lg animated slideInDown">
+        <div class="view-header">
+            <div class="header-icon">
+                <i class="pe page-header-icon pe-7s-add-user"></i>
+            </div>
+            <div class="header-title">
+                <h3>Registro de Usuario</h3>
+                <small>
+                    Por favor ingrese sus datos para su registro.
+                </small>
+            </div>
+        </div>
+
+        <div class="panel panel-filled">
+            <div class="panel-body">
+                <p></p>
+                <form [formGroup]="createuserForm" (ngSubmit)="crearUsuario()" novalidate>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label>Username</label>
+                            <input type="text" formControlName="username" class="form-control" />
+                            <span class="help-block small" *ngIf="createuserForm.get('username')?.invalid && createuserForm.get('username')?.touched">Este campo es obligatorio.</span>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label>Password</label>
+                            <input type="password" formControlName="password" class="form-control" />
+                            <span class="help-block small" *ngIf="createuserForm.get('password')?.invalid && createuserForm.get('password')?.touched">Este campo es obligatorio y debe tener al menos 6 caracteres.</span>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label>Repeat Password</label>
+                            <input type="password" formControlName="repeatpassword" class="form-control" />
+                            <span class="help-block small" *ngIf="createuserForm.hasError('passwordMismatch') && createuserForm.get('repeatpassword')?.touched">Las contraseñas no coinciden.</span>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label>Email Address</label>
+                            <input type="email" formControlName="email" class="form-control" />
+                            <span class="help-block small" *ngIf="createuserForm.get('email')?.invalid && createuserForm.get('email')?.touched">Ingrese un correo electrónico válido.</span>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-accent" type="submit" [disabled]="createuserForm.invalid">Guardar</button>
+                        <a class="btn btn-default" routerLink="/">Regresar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End main content-->
